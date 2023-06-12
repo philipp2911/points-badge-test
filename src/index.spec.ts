@@ -4,6 +4,12 @@ import { User } from './types/user.interface';
 
 describe('getUsersBadge', () => {
 
+  it(`get good like`, async function () {
+    expect(await getUsersBadge(getUserMock(2001))).toEqual(Icon.BADGE_GOOD_LIKE);
+    expect(await getUsersBadge(getUserMock(5000))).toEqual(Icon.BADGE_GOOD_LIKE);
+    expect(await getUsersBadge(getUserMock(10000))).toEqual(Icon.BADGE_GOOD_LIKE);
+  });
+
   it(`get Platinum`, async function () {
     expect(await getUsersBadge(getUserMock(101))).toEqual(Icon.BADGE_PLATINUM);
     expect(await getUsersBadge(getUserMock(2000))).toEqual(Icon.BADGE_PLATINUM);
