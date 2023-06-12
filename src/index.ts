@@ -1,18 +1,18 @@
-import { User } from './types/user.interface';
-import { Icon } from './types/icon.enum';
+import {User} from './types/user.interface';
+import {Icon} from './types/icon.enum';
 
-export const getUsersBadge = ( user: User ): Icon | null => {
-  let badge = null;
-  switch ( true ) {
-    case ( user.solution_count >= 5 && user.solution_count < 25 ):
-      badge = Icon.BADGE_BRONZE;
-      break;
-    case ( user.solution_count >= 25 && user.solution_count < 50 ):
-      badge = Icon.BADGE_SILVER;
-      break;
-    case ( user.solution_count >= 50 ):
-      badge = Icon.BADGE_GOLD;
-      break;
-  }
-  return badge;
+const MIN_SOLUTION_COUNT_BRONZE = 5;
+const MIN_SOLUTION_COUNT_SILVER = 25;
+const MIN_SOLUTION_COUNT_GOLD = 50;
+
+export const getUsersBadge = (user: User): Icon | null => {
+    if (user.solution_count >= MIN_SOLUTION_COUNT_BRONZE && user.solution_count < MIN_SOLUTION_COUNT_SILVER) {
+        return Icon.BADGE_BRONZE;
+    } else if (user.solution_count >= MIN_SOLUTION_COUNT_SILVER && user.solution_count < MIN_SOLUTION_COUNT_GOLD) {
+        return Icon.BADGE_SILVER;
+    } else if (user.solution_count >= MIN_SOLUTION_COUNT_GOLD) {
+        return Icon.BADGE_GOLD;
+    } else {
+        return null;
+    }
 };
